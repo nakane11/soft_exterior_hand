@@ -5,7 +5,7 @@
 ros::NodeHandle_<BluetoothHardware> nh;
 
 soft_exterior_hand::UInt16Array pub_msg;
-ros::Publisher chatter("chatter", &pub_msg);
+ros::Publisher chatter("sensor_states", &pub_msg);
 //
 //unsigned short voltages[14];
 uint16_t voltages[14];
@@ -30,7 +30,7 @@ void loop()
     sprintf(log_msg, "pin %d analog value = %d\n",pin_num, analogValue); // 数値を文字列に変換
     nh.loginfo(log_msg); // ログに情報を出力
     voltages[i] = analogValue;
-    delay(50); 
+    delay(10);
   }
   pub_msg.data = voltages;
   pub_msg.data_length = 14;
