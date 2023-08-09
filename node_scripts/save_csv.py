@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import csv
 import rospy
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import *
@@ -11,11 +12,15 @@ class SaveCSV(QDialog):
     def __init__(self, parent=None):
         super(SaveCSV, self).__init__(parent)
         self.count = 0
+        self.sensor_data = []
+        self.servo_data = []
+        self.filepath = rospy.get_param('~filepath', '/home/nakane/Documents/servo.csv')
         
         self.layout = QHBoxLayout()
         left_layout = QGridLayout()
         right_layout = QVBoxLayout()
         grid_layout = QGridLayout()
+        path_layout = QHBoxLayout()
 
         self.servo_label = [QLabel() for x in range(8)]
         servo_name = ["index", "middle", "ring", "little", "thumb1", "thumb2", "thumb3", "kondo"]
@@ -56,12 +61,22 @@ class SaveCSV(QDialog):
         
         save_button = QPushButton("Save")
         save_button.setFont(QFont('Arial', 15))
+        save_button.clicked.connect(self.save)
         right_layout.addWidget(save_button)
 
-        count_label = QLabel()
-        count_label.setText("count: {}".format(self.count))
-        count_label.setFont(QFont('Arial', 15))
-        right_layout.addWidget(count_label)
+        path_label = QLabel()
+        path_label.setText("path:")
+        path_layout.addWidget(path_label)
+        self.path_box = QLineEdit()
+        self.path_box.setText(self.filepath)
+        self.path_box.textChanged.connect(self.path_text_change)
+        path_layout.addWidget(self.path_box)
+        right_layout.addLayout(path_layout)
+
+        self.count_label = QLabel()
+        self.count_label.setText("count: {}".format(self.count))
+        self.count_label.setFont(QFont('Arial', 15))
+        right_layout.addWidget(self.count_label)
         
         self.layout.addLayout(left_layout)
         self.layout.addLayout(right_layout)
@@ -75,9 +90,21 @@ class SaveCSV(QDialog):
         for i in range(8):
             self.angle_slider[i].setValue(self.angle_label[i].value())
 
+    def path_text_change(self):
+        self.filepath = self.path_box.text()
+
     def sensor_cb(self, msg):
+        self.sensor_data = list(msg.data)
         for val, each_sensor in zip(msg.data, self.sensor_label):
             each_sensor.setText(str(val))
+
+    def save(self):
+        save_data = self.servo_data + self.sensor_data
+        with open(self.filepath, 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(save_data)
+        self.count += 1
+        self.count_label.setText("count: {}".format(self.count))
 
 if __name__ == "__main__":
     rospy.init_node('save_cv')
