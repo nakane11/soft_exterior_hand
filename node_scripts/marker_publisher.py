@@ -7,20 +7,20 @@ from soft_exterior_hand.msg import UInt16Array
 
 class MarkerPublisher():
 
-    index2frame = ["index_link_1",
-                   "index_link_2",
-                   "index_link_3",
-                   "middle_link_1",
-                   "middle_link_2",
-                   "middle_link_3",
-                   "ring_link_1",
-                   "ring_link_2",
-                   "ring_link_3",
-                   "little_link_1",
-                   "little_link_2",
-                   "little_link_3",
+    index2frame = ["thumb_link_3",
                    "thumb_link_2",
-                   "thumb_link_3"]
+                   "index_link_3",
+                   "index_link_2",
+                   "index_link_1",
+                   "middle_link_3",
+                   "middle_link_2",
+                   "middle_link_1",
+                   "ring_link_3",
+                   "ring_link_2",
+                   "ring_link_1",
+                   "little_link_3",
+                   "little_link_2",
+                   "little_link_1"]
 
     def __init__(self):
         self.pub = rospy.Publisher('~output', MarkerArray, queue_size=1)

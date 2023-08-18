@@ -30,13 +30,16 @@ class ServoStatesToJointStates():
                                 "little_joint_1",
                                 "little_joint_2",
                                 "little_joint_3",                                
-                                "thumb_joint_0"]
+                                "thumb_joint_0",
+                                "thumb_joint_1",
+                                "thumb_joint_2",
+                                "thumb_joint_3",]
         rad_data = [(x-90)/180.0*math.pi for x in msg.data]
         joint_state_msg.position = [rad_data[0],0,0,0,
                                     rad_data[1],0,0,0,
                                     rad_data[2],0,0,0,
                                     rad_data[3],0,0,0,
-                                    rad_data[4]]
+                                    rad_data[4],0,0,0]
         self.pub.publish(joint_state_msg)
         
 if __name__ == "__main__":

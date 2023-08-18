@@ -13,9 +13,8 @@ class SaveCSV(QDialog):
         super(SaveCSV, self).__init__(parent)
         self.count = 0
         self.sensor_data = []
-        self.servo_data = []
         self.filepath = rospy.get_param('~filepath', '/home/nakane/Documents/servo.csv')
-        
+
         self.layout = QHBoxLayout()
         left_layout = QGridLayout()
         right_layout = QVBoxLayout()
@@ -29,19 +28,40 @@ class SaveCSV(QDialog):
             label.setFont(QFont('Arial', 15))
 
         self.angle_label = [QSpinBox() for x in range(8)]
+        for i in range(4):
+            self.angle_label[i].setMaximum(140)
+            self.angle_label[i].setMinimum(40)
+        self.angle_label[0].setValue(110)
+        self.angle_label[1].setValue(117)
+        self.angle_label[2].setValue(120)
+        self.angle_label[3].setValue(100)
+
+        self.angle_label[4].setMaximum(160)
+        self.angle_label[4].setMinimum(60)
+        self.angle_label[4].setValue(160)
+
+        self.angle_label[5].setMaximum(105)
+        self.angle_label[5].setMinimum(0)
+        self.angle_label[5].setValue(30)
+
+        self.angle_label[6].setMaximum(180)
+        self.angle_label[6].setMinimum(20)
+        self.angle_label[6].setValue(180)
+
+        self.angle_label[7].setMaximum(270)
+        self.angle_label[7].setMinimum(0)
+        self.angle_label[7].setValue(270)
+
         for each_label in self.angle_label:
-            each_label.setMaximum(170)
-            each_label.setMinimum(10)
-            each_label.setValue(90)
             each_label.setFont(QFont('Arial', 15))
             each_label.valueChanged.connect(self.spin_value_change)
-        
+
         self.angle_slider = [QSlider(QtCore.Qt.Orientation.Horizontal)
                              for x in range(8)]        
-        for each_slider in self.angle_slider:
-            each_slider.setMaximum(170)
-            each_slider.setMinimum(10)
-            each_slider.setValue(90)
+        for each_slider, each_label in zip(self.angle_slider, self.angle_label):
+            each_slider.setMaximum(each_label.maximum())
+            each_slider.setMinimum(each_label.minimum())
+            each_slider.setValue(each_label.value())
             each_slider.valueChanged.connect(self.slider_value_change)
 
         for i in range(8):
@@ -57,8 +77,7 @@ class SaveCSV(QDialog):
             each_sensor.setFrameStyle(QFrame.Box)
             grid_layout.addWidget(each_sensor, (i+1)%3,(i+1)//3)
         right_layout.addLayout(grid_layout)
-        self.sub = rospy.Subscriber("/sensor_states", UInt16Array, self.sensor_cb)
-        
+
         save_button = QPushButton("Save")
         save_button.setFont(QFont('Arial', 15))
         save_button.clicked.connect(self.save)
@@ -77,18 +96,33 @@ class SaveCSV(QDialog):
         self.count_label.setText("count: {}".format(self.count))
         self.count_label.setFont(QFont('Arial', 15))
         right_layout.addWidget(self.count_label)
-        
+
         self.layout.addLayout(left_layout)
         self.layout.addLayout(right_layout)
         self.setLayout(self.layout)
 
+        self.pub = rospy.Publisher("/servo_states", UInt16Array, queue_size=1)
+        rospy.sleep(1)
+        pub_msg = UInt16Array()
+        pub_msg.data = [x.value() for x in self.angle_slider]
+        self.pub.publish(pub_msg)
+        self.sub = rospy.Subscriber("/sensor_states", UInt16Array, self.sensor_cb)
+
     def slider_value_change(self):
+        pub_msg = UInt16Array()
+        pub_msg.data = [x.value() for x in self.angle_slider]
+        self.pub.publish(pub_msg)
         for i in range(8):
             self.angle_label[i].setValue(self.angle_slider[i].value())
+        rospy.sleep(0.3)
 
     def spin_value_change(self):
+        pub_msg = UInt16Array()
+        pub_msg.data = [x.value() for x in self.angle_label]
+        self.pub.publish(pub_msg)
         for i in range(8):
             self.angle_slider[i].setValue(self.angle_label[i].value())
+        rospy.sleep(0.3)
 
     def path_text_change(self):
         self.filepath = self.path_box.text()
@@ -99,7 +133,7 @@ class SaveCSV(QDialog):
             each_sensor.setText(str(val))
 
     def save(self):
-        save_data = self.servo_data + self.sensor_data
+        save_data = [x.value() for x in self.angle_slider] + self.sensor_data
         with open(self.filepath, 'a') as f:
             writer = csv.writer(f)
             writer.writerow(save_data)
