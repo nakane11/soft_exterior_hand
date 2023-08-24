@@ -1,0 +1,10 @@
+(load "package://aeroeus/aero-interface.l")
+(aero-init)
+(send *aero* :angle-vector (send *ri* :state :potentio-vector))
+
+;;初期姿勢
+(send *ri* :angle-vector (send *aero* :angle-vector) 2000)
+(send *ri* :wait-interpolation)
+
+;;指の間を開く
+;;センサを見ながら指を曲げる
