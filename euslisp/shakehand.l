@@ -8,20 +8,17 @@
 (setq pub-msg (instance soft_exterior_hand::UInt16Array :init))
 (send pub-msg :data #i(80 107 128 120 160 30 180 270))
 (ros::publish "/servo_states" pub-msg)
-(ros::duration-sleep 0.8)
 
-;;手の平が上向き
-(send *aero* :angle-vector #f(-13.97 -9.97 -17.01 -135.1 0.0 0.0 0.0 -0.05 -4.98 9.97 19.98 -80.02 89.0 4.98 -19.9 0.0 0.0 24.9 -0.013 0.0 0.0 0.0 42.4 -60.9 -42.4 60.9))
+(send *aero* :angle-vector #f(-13.97 -9.97 -17.01 -135.1 0.0 0.0 0.0 -0.05 -4.98 9.97 0.0 -90.0 40.0 4.98 -19.9 0.0 0.0 24.9 -0.013 0.0 0.0 0.0 42.4 -60.9 -42.4 60.9))
 (send *ri* :angle-vector (send *aero* :angle-vector) 3000)
 (send *ri* :wait-interpolation)
+(ros::duration-sleep 0.6)
 
-;;指の間を開く
 (setq pub-msg (instance soft_exterior_hand::UInt16Array :init))
-(send pub-msg :data (integer-vector 120 128 125 102 180 30 180 270))
+(send pub-msg :data #i(80 107 128 120 160 80 180 270))
 (ros::publish "/servo_states" pub-msg)
-(ros::duration-sleep 2.0)
+(ros::duration-sleep 0.3)
 
-;;センサを見ながら指を曲げる
 (setq cnt 0)
 (setq deg 270)
 (while (< cnt 2)
@@ -34,22 +31,24 @@
     (setq deg (- deg 30))
     (when (< deg 20)
       (exit))
-    (send pub-msg :data (integer-vector 120 128 125 102 180 30 180 deg))
+    (send pub-msg :data (integer-vector 80 107 128 120 160 80 180 deg))
     (ros::publish "/servo_states" pub-msg)
     (ros::duration-sleep 0.3)
 ))
 
-(send pub-msg :data (integer-vector 120 128 125 102 150 30 40 deg))
-(ros::publish "/servo_states" pub-msg)
-(ros::duration-sleep 4.0)
+(send *aero* :l_elbow_joint :joint-angle -70)
+(send *ri* :angle-vector (send *aero* :angle-vector) 800)
+(send *ri* :wait-interpolation)
+(send *aero* :l_elbow_joint :joint-angle -90)
+(send *ri* :angle-vector (send *aero* :angle-vector) 800)
+(send *ri* :wait-interpolation)
+(send *aero* :l_elbow_joint :joint-angle -70)
+(send *ri* :angle-vector (send *aero* :angle-vector) 800)
+(send *ri* :wait-interpolation)
+(send *aero* :l_elbow_joint :joint-angle -90)
+(send *ri* :angle-vector (send *aero* :angle-vector) 800)
+(send *ri* :wait-interpolation)
 
 (setq pub-msg (instance soft_exterior_hand::UInt16Array :init))
-(send pub-msg :data (integer-vector 120 128 125 102 160 30 180 200))
+(send pub-msg :data #i(80 107 128 120 160 30 180 270))
 (ros::publish "/servo_states" pub-msg)
-(ros::duration-sleep 0.5)
-
-(setq pub-msg (instance soft_exterior_hand::UInt16Array :init))
-(send pub-msg :data (integer-vector 120 128 125 102 180 30 180 270))
-(ros::publish "/servo_states" pub-msg)
-
-
