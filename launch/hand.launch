@@ -1,6 +1,4 @@
 <launch>
-  <node pkg="soft_exterior_hand" type="rfcomm.sh" name="rfcomm" output="screen" />
-
   <arg
       name="model" />
   <param
