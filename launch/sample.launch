@@ -1,0 +1,26 @@
+<launch>
+  <node pkg="soft_exterior_hand" type="rfcomm.sh" name="rfcomm" output="screen" />
+
+  <arg
+      name="model" />
+  <param
+      name="robot_description"
+      textfile="$(find soft_exterior_hand)/urdf/soft_exterior_hand.urdf" />
+
+  <node
+      name="robot_state_publisher"
+      pkg="robot_state_publisher"
+      type="robot_state_publisher" />
+
+  <node name="serial_node_esp32" pkg="rosserial_python"
+        type="serial_node.py" args="_port:=/dev/rfcomm0"
+        output="screen" respawn="true">
+  </node>
+
+  <node pkg="soft_exterior_hand" type="marker_publisher.py"
+        name="marker_publisher" />
+  
+  <node pkg="soft_exterior_hand" type="servo_states_to_joint_states.py"
+        name="servo_states_to_joint_states" />
+
+</launch>
