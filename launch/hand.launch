@@ -5,6 +5,11 @@
       name="robot_description"
       textfile="$(find soft_exterior_hand)/urdf/soft_exterior_hand.urdf" />
 
+    <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+
   <node
       name="robot_state_publisher"
       pkg="robot_state_publisher"
@@ -20,5 +25,11 @@
   
   <node pkg="soft_exterior_hand" type="servo_states_to_joint_states.py"
         name="servo_states_to_joint_states" />
+
+  <node
+      name="rviz"
+      pkg="rviz"
+      type="rviz"
+      args="-d $(find soft_exterior_hand)/config/hand.rviz" />
 
 </launch>
