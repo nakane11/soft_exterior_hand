@@ -1,22 +1,18 @@
 <launch>
   <arg
       name="model" />
+  <arg name="robot_description" value="robot_description_with_hand" />
   <param
-      name="robot_description"
-      textfile="$(find soft_exterior_hand)/urdf/soft_exterior_hand.urdf" />
-
-  <node
-    name="joint_state_publisher"
-    pkg="joint_state_publisher"
-    type="joint_state_publisher" >
-    <remap from="joint_states" to="hand_joint_states"/>
-  </node>
+      name="$(arg robot_description)"
+      textfile="$(find aero_description)/typeJSK_hand/robots/aero.urdf" />
 
   <node
       name="robot_state_publisher"
       pkg="robot_state_publisher"
-      type="robot_state_publisher" >
-    <remap from="joint_states" to="hand_joint_states"/>
+      type="robot_state_publisher"
+      clear_params="true">
+    <remap from="joint_states" to="joint_states_with_hand"/>
+    <remap from="robot_description" to="$(arg robot_description)"/>
   </node>
 
   <node name="serial_node_esp32" pkg="rosserial_python"
@@ -28,8 +24,7 @@
         name="marker_publisher" />
   
   <node pkg="soft_exterior_hand" type="servo_states_to_joint_states.py"
-        name="servo_states_to_joint_states" >
-    <remap from="joint_states" to="hand_joint_states"/>
+        name="servo_states_to_joint_states" output="screen">
   </node>
 
   <node
