@@ -6,10 +6,13 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1
+        - /PointCloud21
+        - /BoundingBoxArray1
+        - /Image1
+        - /PointCloud22
         - /TF1/Frames1
       Splitter Ratio: 0.5
-    Tree Height: 1230
+    Tree Height: 636
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -39,7 +42,7 @@ Visualization Manager:
       Cell Size: 1
       Class: rviz/Grid
       Color: 160; 160; 164
-      Enabled: false
+      Enabled: true
       Line Style:
         Line Width: 0.029999999329447746
         Value: Lines
@@ -52,8 +55,89 @@ Visualization Manager:
       Plane: XY
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
-      Value: false
-    - Alpha: 0.800000011920929
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic: /kinect_head/depth_registered/half/points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: jsk_rviz_plugin/BoundingBoxArray
+      Enabled: true
+      Name: BoundingBoxArray
+      Queue Size: 10
+      Topic: /multi_euclidean_cluster_point_indices_decomposer/boxes
+      Unreliable: false
+      Value: true
+      alpha: 0.800000011920929
+      color: 25; 255; 0
+      coloring: Auto
+      line width: 0.004999999888241291
+      only edge: false
+      show coords: false
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /tile_image_2x1/output
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic: /multi_euclidean_cluster_point_indices_decomposer/debug_output
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -64,6 +148,37 @@ Visualization Manager:
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        body_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        head_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        head_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hip_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        hip_sphere_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -84,6 +199,85 @@ Visualization Manager:
           Show Trail: false
           Value: true
         index_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_elbow_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_forearm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_hand_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_hand_yaw_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_shoulder_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_shoulder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_upperarm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        l_wrist_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        leg_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_knee_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_shank_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_shank_link_dummy:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_thigh_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_thigh_link_dummy:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lifter_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lifter_top_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -128,6 +322,85 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        neck_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_eef_grasp_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r_eef_pick_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r_elbow_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_forearm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_hand_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_hand_yaw_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_index_tip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r_indexbase_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_indexend_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_indexmid_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r_shoulder_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_shoulder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_thumb_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_thumb_tip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        r_upperarm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        r_wrist_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         ring_link_0:
           Alpha: 1
           Show Axes: false
@@ -168,36 +441,378 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        waist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheels_base_laser_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheels_front_left_mecanum:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheels_front_right_mecanum:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheels_rear_left_mecanum:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheels_rear_right_mecanum:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheels_top_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
-      Robot Description: robot_description
+      Robot Description: robot_description_with_hand
       TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
-      Filter (blacklist): ""
-      Filter (whitelist): ""
+      Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        base_link:
+          Value: false
+        body_link:
+          Value: false
+        camera_frame:
+          Value: false
+        camera_optical_frame:
+          Value: false
+        closet:
+          Value: false
+        conveniShelf1:
+          Value: false
+        conveniShelf2:
+          Value: false
+        conveniShelf2Edge:
+          Value: false
+        conveniShelf2EdgePre:
+          Value: false
+        eng8:
+          Value: false
+        eng8/1f:
+          Value: false
+        eng8/6f:
+          Value: false
+        eng8/6f/610:
+          Value: false
+        eng8/b1f:
+          Value: false
+        garbage:
+          Value: false
+        head_base_link:
+          Value: false
+        head_link:
+          Value: false
+        hip_center:
+          Value: false
+        hip_sphere_link:
+          Value: false
+        index_link_0:
+          Value: false
+        index_link_1:
+          Value: false
+        index_link_2:
+          Value: false
+        index_link_3:
+          Value: false
+        kitchen:
+          Value: false
+        l_elbow_link:
+          Value: false
+        l_forearm_link:
+          Value: false
+        l_hand_link:
+          Value: true
+        l_hand_yaw_link:
+          Value: true
+        l_shoulder_center:
+          Value: false
+        l_shoulder_link:
+          Value: false
+        l_upperarm_link:
+          Value: false
+        l_wrist_center:
+          Value: false
+        leg_base_link:
+          Value: false
+        leg_knee_link:
+          Value: false
+        leg_shank_link:
+          Value: false
+        leg_shank_link_dummy:
+          Value: false
+        leg_thigh_link:
+          Value: false
+        leg_thigh_link_dummy:
+          Value: false
+        lifter_base_link:
+          Value: false
+        lifter_top_link:
+          Value: false
+        little_link_0:
+          Value: false
+        little_link_1:
+          Value: false
+        little_link_2:
+          Value: false
+        little_link_3:
+          Value: false
+        map:
+          Value: false
+        middle_link_0:
+          Value: false
+        middle_link_1:
+          Value: false
+        middle_link_2:
+          Value: false
+        middle_link_3:
+          Value: false
+        neck_link:
+          Value: false
+        odom:
+          Value: false
+        openni_camera_depth_frame:
+          Value: false
+        openni_camera_depth_optical_frame:
+          Value: false
+        openni_camera_link:
+          Value: false
+        openni_camera_rgb_frame:
+          Value: false
+        openni_camera_rgb_optical_frame:
+          Value: false
+        r_eef_grasp_link:
+          Value: false
+        r_eef_pick_link:
+          Value: false
+        r_elbow_link:
+          Value: false
+        r_forearm_link:
+          Value: false
+        r_hand_link:
+          Value: false
+        r_hand_yaw_link:
+          Value: false
+        r_index_tip_link:
+          Value: false
+        r_indexbase_link:
+          Value: false
+        r_indexend_link:
+          Value: false
+        r_indexmid_link:
+          Value: false
+        r_shoulder_center:
+          Value: false
+        r_shoulder_link:
+          Value: false
+        r_thumb_link:
+          Value: false
+        r_thumb_tip_link:
+          Value: false
+        r_upperarm_link:
+          Value: false
+        r_wrist_center:
+          Value: false
+        ring_link_0:
+          Value: false
+        ring_link_1:
+          Value: false
+        ring_link_2:
+          Value: false
+        ring_link_3:
+          Value: false
+        room610Entrance:
+          Value: false
+        room610Exit:
+          Value: false
+        thumb_link_0:
+          Value: false
+        thumb_link_1:
+          Value: false
+        thumb_link_2:
+          Value: false
+        thumb_link_3:
+          Value: false
+        waist_link:
+          Value: false
+        washingMachine:
+          Value: false
+        wheel_base_link:
+          Value: false
+        wheels_base_laser_link:
+          Value: false
+        wheels_front_left_mecanum:
+          Value: false
+        wheels_front_right_mecanum:
+          Value: false
+        wheels_rear_left_mecanum:
+          Value: false
+        wheels_rear_right_mecanum:
+          Value: false
+        wheels_top_link:
+          Value: false
+        workTable:
+          Value: false
+        world:
+          Value: false
       Marker Alpha: 1
-      Marker Scale: 0.05000000074505806
+      Marker Scale: 0.20000000298023224
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        world:
+          eng8:
+            eng8/1f:
+              {}
+            eng8/6f:
+              eng8/6f/610:
+                {}
+              map:
+                closet:
+                  {}
+                conveniShelf1:
+                  {}
+                conveniShelf2:
+                  {}
+                conveniShelf2Edge:
+                  {}
+                conveniShelf2EdgePre:
+                  {}
+                garbage:
+                  {}
+                kitchen:
+                  {}
+                odom:
+                  base_link:
+                    wheel_base_link:
+                      wheels_base_laser_link:
+                        {}
+                      wheels_front_left_mecanum:
+                        {}
+                      wheels_front_right_mecanum:
+                        {}
+                      wheels_rear_left_mecanum:
+                        {}
+                      wheels_rear_right_mecanum:
+                        {}
+                      wheels_top_link:
+                        lifter_base_link:
+                          leg_shank_link:
+                            leg_knee_link:
+                              leg_thigh_link:
+                                leg_base_link:
+                                  lifter_top_link:
+                                    waist_link:
+                                      hip_sphere_link:
+                                        hip_center:
+                                          body_link:
+                                            l_shoulder_link:
+                                              l_shoulder_center:
+                                                l_upperarm_link:
+                                                  l_elbow_link:
+                                                    l_forearm_link:
+                                                      l_wrist_center:
+                                                        l_hand_yaw_link:
+                                                          l_hand_link:
+                                                            index_link_0:
+                                                              index_link_1:
+                                                                index_link_2:
+                                                                  index_link_3:
+                                                                    {}
+                                                            little_link_0:
+                                                              little_link_1:
+                                                                little_link_2:
+                                                                  little_link_3:
+                                                                    {}
+                                                            middle_link_0:
+                                                              middle_link_1:
+                                                                middle_link_2:
+                                                                  middle_link_3:
+                                                                    {}
+                                                            ring_link_0:
+                                                              ring_link_1:
+                                                                ring_link_2:
+                                                                  ring_link_3:
+                                                                    {}
+                                                            thumb_link_0:
+                                                              thumb_link_1:
+                                                                thumb_link_2:
+                                                                  thumb_link_3:
+                                                                    {}
+                                            neck_link:
+                                              head_base_link:
+                                                head_link:
+                                                  camera_frame:
+                                                    camera_optical_frame:
+                                                      {}
+                                                  openni_camera_link:
+                                                    openni_camera_depth_frame:
+                                                      openni_camera_depth_optical_frame:
+                                                        {}
+                                                    openni_camera_rgb_frame:
+                                                      openni_camera_rgb_optical_frame:
+                                                        {}
+                                            r_shoulder_link:
+                                              r_shoulder_center:
+                                                r_upperarm_link:
+                                                  r_elbow_link:
+                                                    r_forearm_link:
+                                                      r_wrist_center:
+                                                        r_hand_yaw_link:
+                                                          r_hand_link:
+                                                            r_eef_grasp_link:
+                                                              {}
+                                                            r_eef_pick_link:
+                                                              {}
+                                                            r_indexbase_link:
+                                                              r_indexend_link:
+                                                                r_index_tip_link:
+                                                                  {}
+                                                            r_indexmid_link:
+                                                              {}
+                                                            r_thumb_link:
+                                                              r_thumb_tip_link:
+                                                                {}
+                              leg_thigh_link_dummy:
+                                {}
+                          leg_shank_link_dummy:
+                            {}
+                room610Entrance:
+                  {}
+                room610Exit:
+                  {}
+                washingMachine:
+                  {}
+                workTable:
+                  {}
+            eng8/b1f:
+              {}
       Update Interval: 0
-      Value: false
-    - Class: rviz/MarkerArray
-      Enabled: true
-      Marker Topic: /marker_publisher/output
-      Name: MarkerArray
-      Namespaces:
-        "": true
-      Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
@@ -227,7 +842,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.2993313670158386
+      Distance: 1.3533201217651367
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -235,25 +850,27 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.0748044103384018
-        Y: -0.05287456884980202
-        Z: 0.04734419286251068
+        X: -0.22791609168052673
+        Y: -0.29850512742996216
+        Z: 1.1542494297027588
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: -1.544796347618103
+      Pitch: 0.33979734778404236
       Target Frame: <Fixed Frame>
-      Yaw: 0.013555298559367657
+      Yaw: 0.7385880947113037
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1536
+  Height: 2096
   Hide Left Dock: false
   Hide Right Dock: true
-  QMainWindow State: 000000ff00000000fd0000000400000000000001560000055afc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003e0000055a000000ca00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f00000453fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003e00000453000000a600fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000009b800000044fc0100000002fb0000000800540069006d00650100000000000009b80000031f00fffffffb0000000800540069006d006501000000000000045000000000000000000000085c0000055a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Image:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd0000000400000000000004b000000796fc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003b00000305000000c700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006501000003460000048b0000001600ffffff000000010000010f000002b4fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b000002b4000000a000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e1000001970000000300000eb80000003efc0100000002fb0000000800540069006d0065010000000000000eb80000030700fffffffb0000000800540069006d0065010000000000000450000000000000000000000a020000079600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -262,6 +879,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: true
-  Width: 2488
+  Width: 3768
   X: 72
   Y: 27
